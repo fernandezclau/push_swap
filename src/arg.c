@@ -1,6 +1,17 @@
 #include "../include/push_swap.h"
 #include <stdio.h>
 
+int check_duplicate(t_list *lst, void *content)
+{
+    while (lst)
+    {
+        if (*(int *)lst->content == *(int *)content)
+            return 1;
+        lst = lst->next;
+    }
+    return 0;
+}
+
 int	check_int(char *arg)
 {
 	int i;
@@ -63,50 +74,42 @@ int	process_arg(int argc, char **argv, t_list **list)
 	i = 1;
 	while (i < argc)
 	{
-        	arg = ft_split(argv[i], ' ');
+        	arg = ft_split(argv[i++], ' ');
         	if (arg)
         	{
             		j = 0;
             		while (arg[j])
             		{
-                		/*if (check_int(arg[j]) == 0)
-                		{
-                    			int *num_ptr = malloc(sizeof(int));
-                    			if (!num_ptr)
-                        			return (-1);
-                    			*num_ptr = ft_atoi(arg[j]);
-                    			num = ft_lstnew(num_ptr);
-                    			if (!num)
-                    			{
-                        			free(num_ptr);
-                        			return (-1);
-                    			}
-                    			ft_lstadd_back(list, num);
-                    			j++;
-                		}*/
-				if (arg_to_int(arg[j], list) != 0)
+				if (arg_to_int(arg[j++], list) != 0)
 				{
 					ft_free_split(arg);
 					return (-1);
 				}
-				j++;
 			}
 			ft_free_split(arg);
 		}
-		i++;
 	}
 	return (0);
 }
+
 
 int main (int argc, char **argv)
 {
 	t_list *list = NULL;
 	if (process_arg(argc, argv, &list) != 0)
-		printf("Error final\n");
+		printf("Error\n");
+	if (check_duplicate
 
+	t_list	*aux;
 	while (list != NULL)
 	{
 		printf("%d\n", *(int *) list->content);
+		aux= list->next;
+		if(check_duplicate(aux, list->content))
+		{
+			printf("HAY DUPLICADO");
+			return (-1);
+		}
 		list = list->next;
 	}
 }
