@@ -36,7 +36,7 @@ OBJDIR		=	obj
 # ---------- SRC & OBJS -----------
 # ---------------------------------
 
-SRC		=	src/main.c
+SRC		=	src/main.c src/arg.c src/sort.c src/utils.c
 
 OBJS		=	$(SRC:.c=.o)
 
@@ -47,6 +47,7 @@ all			:	$(NAME)
 
 $(NAME)		:	$(OBJS)
 				make -C $(LIBFT) -f Makefile
+				make bonus -C $(LIBFT) -f Makefile
 				make -C $(PRT) -f Makefile
 				$(CC) $(CFLAGS) $(OBJS) -o push_swap $(LIBFT_A) $(PRT_A)
 				$(AR) $(NAME) $(OBJS)
