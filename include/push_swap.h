@@ -18,4 +18,20 @@ int	process_arguments(int argc, char **argv, t_list **list);
 void	free_split(char **split);
 // --------- QUICK SORT ----------
 int	is_sorted(t_list **list);
+// ---------- MOVEMENTS ----------
+// ........... push ..............
+void	pa(t_list **stack_a, t_list **stack_b);
+void	pb(t_list **stack_b, t_list **stack_a);
+// ........... swap ..............
+void	sa(t_list **stack_a, int print);
+void	sb(t_list **stack_b, int print);
+void	ss(t_list **stack_a, t_list **stack_b);
+// ........... rotate ............
+void	ra(t_list **stack_a);
+void	rb(t_list **stack_b);
+void	rr(t_list *stack_a, t_list *stack_b);
+// ....... reverse rotate ........
+void	rra(t_list **stack_a);
+void	rrb(t_list **stack_b);
+void	rrr(t_list **stack_a, t_list **stack_b);
 #endif
