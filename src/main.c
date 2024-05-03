@@ -4,28 +4,21 @@
 
 int main(int argc, char **argv)
 {
-	char **arg;
-
-	int i;
-	int j;
-	int count_arg = 0;
-	i = 1;
-	while (i < argc)
+	t_list	*stack_a;
+	
+	stack_a = NULL;
+	if (argc <= 1)
+		return (0);
+	if (process_arguments(argc, argv, &stack_a) != 0)
+		(ft_printf("Error\n"), exit(-1));
+	if (is_sorted(&stack_a))
 	{
-		arg = ft_split(argv[i], ' ');
-
-		if (arg)
-		{
-			j = 0;
-			while (arg[j])
-			{
-				int num = ft_atoi(arg[j]);
-				printf(" %d ", num);
-				j++;
-				count_arg++;
-			}
-		}
-		i++;
+		ft_lstclear(&stack_a, free);
+		return (0);
+	}	
+	while (stack_a != NULL)
+	{
+		printf("%d", *(int *) stack_a->content);
+		stack_a = stack_a->next;
 	}
-	printf("count: %d", count_arg);
 }

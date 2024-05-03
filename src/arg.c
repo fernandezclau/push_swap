@@ -5,20 +5,26 @@
 ** DESC: The 'check_duplicate_range' functin checks wheter there are duplicate
 ** numbers and the numbers are in range of an int.
 */
-int check_duplicate_range(t_list *list, void *content)
+int check_duplicated_range(t_list *list)
 {
 	int	num;
-
-	num = *(int *)content;
-	if (num < INT_MIN || num > INT_MAX)
-		return (1);
+	t_list *temp;
+	
 	while (list)
 	{
-		if (*(int *)list->content == *(int *)content)
-			return (1);
-		list = list->next;
+		num = *(int *)list->content;
+		if (num < INT_MIN || num > INT_MAX)
+			return 1;
+        	temp = list->next;
+		while (temp)
+		{
+			if (*(int *)temp->content == num)
+                		return 1;
+            		temp = temp->next;
+		}
+        	list = list->next;
 	}
-	return (0);
+	return 0;
 }
 
 /*
@@ -29,6 +35,8 @@ int	check_ints(char *arg)
 	int i;
 
 	i = 0;
+	if (arg[i] == '-' || arg[i] == '+')
+		i++;
 	while (arg[i] != '\0')
 	{
 		if (!(arg[i] >= '0' && arg[i] <= '9'))
@@ -36,20 +44,6 @@ int	check_ints(char *arg)
 		i++;
 	}
 	return (0);
-}
-
-void ft_free_split(char **split)
-{
-    if (!split)
-        return;
-
-    int i = 0;
-    while (split[i])
-    {
-        free(split[i]);
-        i++;
-    }
-    free(split);
 }
 
 /*
@@ -60,23 +54,22 @@ int	atoi_argument(char *argument, t_list **list)
 {
 	int	*num_ptr;
 	t_list	*num;
-
 	if (check_ints(argument) == 0)
 	{
 		num_ptr = malloc(sizeof(int));
 		if (!num_ptr)
-			return (-1);
+			return (1);
 		*num_ptr = ft_atoi(argument);
 		num = ft_lstnew(num_ptr);
 		if (!num)
 		{
 			free(num_ptr);
-			return (-1);
+			return (1);
 		}
 		ft_lstadd_back(list, num);
 	}
 	else
-		return (-1);
+		return (1);
 	return (0);
 }
 
@@ -88,7 +81,6 @@ int	split_arguments(int argc, char **argv, t_list **list)
 {
 	int	i;
 	int	j;
-	int	count_arg;
 	char	**arg;
 	 
 	i = 1;
@@ -102,45 +94,34 @@ int	split_arguments(int argc, char **argv, t_list **list)
             		{
 				if (atoi_argument(arg[j++], list) != 0)
 				{
-					ft_free_split(arg);
+					free_split(arg);
 					return (1);
 				}
 			}
-			ft_free_split(arg);
+			free_split(arg);
 		}
 	}
 	return (0);
 }
-
+/*
+** DESC: The 'process_argument' function process and validates all arguments
+*/
 int	process_arguments(int argc, char **argv, t_list **list)
 {
 	if (split_arguments(argc, argv, list) != 0)
 		return (1);
-/*	t_list *aux;
-	while (list != NULL)
+	if (check_duplicated_range(*list) != 0)
 	{
-		printf("%d\n", *(int *) list->content);
-                aux= list->next;
-                if(check_duplicate_range(aux, list->content) != 0)
-                        return (-1);
-                }
-                list = list->next;
-	}*/
+		ft_lstclear(list, free);
+		return (1);
+	}
+	return (0);
 }
-
+/*
 int main (int argc, char **argv)
 {
 	t_list *list = NULL;
 	if (process_arguments(argc, argv, &list) != 0)
 		printf("Error\n");
-
-        t_list  *aux;
-        while (list != NULL)
-        {
-                printf("%d\n", *(int *) list->content);
-                aux= list->next;
-                if(check_duplicate_range(aux, list->content) != 0)
-                        return (-1);
-                list = list->next;
-        }
 }
+*/
