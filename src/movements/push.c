@@ -1,6 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/03 20:42:49 by claferna          #+#    #+#             */
+/*   Updated: 2024/05/03 20:51:30 by claferna         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../include/push_swap.h"
-#include <stdio.h>
+
 /*
 ** DESC: The 'pa' function takes the first element on 'b' and puts it
 ** on the first element on 'a'.
