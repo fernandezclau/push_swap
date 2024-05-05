@@ -6,21 +6,20 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:02:52 by claferna          #+#    #+#             */
-/*   Updated: 2024/05/04 21:11:28 by claferna         ###   ########.fr       */
+/*   Updated: 2024/05/05 19:29:56 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
-#include <stdio.h>
 
 /*
 ** DESC: The 'ft_lstmin' function gets the minimum value of a list.
 */
 int	ft_lstmin(t_list **list)
 {
-	int	min;
-	t_list	*cur;
-	
+	int		min;
+	t_list	*cur;	
+
 	if (*list == NULL)
 		return (-1);
 	min = *(int *)(*list)->content;
@@ -39,7 +38,7 @@ int	ft_lstmin(t_list **list)
 */
 int	ft_lstmax(t_list **list)
 {
-	int	max;
+	int		max;
 	t_list	*cur;
 
 	if (*list == NULL)
@@ -59,9 +58,9 @@ int	ft_lstmax(t_list **list)
 ** DESC: The 'ft_lst_index' function gets the index of an element of a
 ** list given its value.
 */
-int	ft_lst_index(t_list **list, int value)
+int	ft_lstindex(t_list **list, int value)
 {
-	int	index;
+	int		index;
 	t_list	*cur;
 
 	if (*list == NULL)
@@ -82,9 +81,9 @@ int	ft_lst_index(t_list **list, int value)
 ** DESC: The 'ft_lst_value' function gets the value of an element of a
 ** list given its index.
 */
-int	ft_lst_value(t_list **list, int index)
+int	ft_lstvalue(t_list **list, int index)
 {
-	int	i;
+	int		i;
 	t_list	*cur;
 
 	i = 0;
@@ -98,6 +97,7 @@ int	ft_lst_value(t_list **list, int index)
 	}
 	return (-1);
 }
+
 /*
 int main() {
     // Crear algunos nodos de lista
@@ -126,18 +126,16 @@ int main() {
     // Llamar a la función ft_lstfind para encontrar la posición del valor
     int position = ft_lst_index(&head, value_to_find);
     if (position != -1)
-        printf("El valor %d se encuentra en la posición %d de la lista.\n", value_to_find, position);
+        printf("El valor %d esta en la posicion %d", value_to_find, position);
     else
         printf("El valor %d no se encuentra en la lista.\n", value_to_find);
     int index_to_get = 1;
 
-    // Llamar a la función ft_lstget para obtener el valor en el índice dado
     int value = ft_lst_value(&head, index_to_get);
     if (value != -1)
-        printf("El valor en el índice %d de la lista es: %d\n", index_to_get, value);
+        printf("El valor en el índice %d de: %d\n", index_to_get, value);
     else
-        printf("El índice %d está fuera de rango.\n", index_to_get);
-    // Liberar la memoria asignada a los nodos de la lista
+        printf("índice %d fuera de rango.\n", index_to_get);
     free(node1);
     free(node2);
     free(node3);
