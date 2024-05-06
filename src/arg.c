@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   arg.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/06 16:41:05 by claferna          #+#    #+#             */
+/*   Updated: 2024/05/06 16:46:24 by claferna         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/push_swap.h"
 #include <stdio.h>
 
@@ -5,26 +17,26 @@
 ** DESC: The 'check_duplicate_range' functin checks wheter there are duplicate
 ** numbers and the numbers are in range of an int.
 */
-int check_duplicated_range(t_list *list)
+int	check_duplicated_range(t_list *list)
 {
-	int	num;
-	t_list *temp;
-	
+	int		num;
+	t_list	*temp;
+
 	while (list)
 	{
 		num = list->content;
 		if (num < INT_MIN || num > INT_MAX)
-			return 1;
-        	temp = list->next;
+			return (1);
+		temp = list->next;
 		while (temp)
 		{
 			if (temp->content == num)
-                		return 1;
-            		temp = temp->next;
+				return (1);
+			temp = temp->next;
 		}
-        	list = list->next;
+		list = list->next;
 	}
-	return 0;
+	return (0);
 }
 
 /*
@@ -32,7 +44,7 @@ int check_duplicated_range(t_list *list)
 */
 int	check_ints(char *arg)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (arg[i] == '-' || arg[i] == '+')
@@ -52,7 +64,7 @@ int	check_ints(char *arg)
 */
 int	atoi_argument(char *argument, t_list **list)
 {
-	int	num_ptr;
+	int		num_ptr;
 	t_list	*num;
 
 	if (check_ints(argument) == 0)
@@ -72,19 +84,19 @@ int	atoi_argument(char *argument, t_list **list)
 */
 int	split_arguments(int argc, char **argv, t_list **list)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	**arg;
-	 
+
 	i = 1;
 	while (i < argc)
 	{
-        	arg = ft_split(argv[i++], ' ');
-        	if (arg)
-        	{
-            		j = 0;
-            		while (arg[j])
-            		{
+		arg = ft_split(argv[i++], ' ');
+		if (arg)
+		{
+			j = 0;
+			while (arg[j])
+			{
 				if (atoi_argument(arg[j++], list) != 0)
 				{
 					free_split(arg);
@@ -96,6 +108,7 @@ int	split_arguments(int argc, char **argv, t_list **list)
 	}
 	return (0);
 }
+
 /*
 ** DESC: The 'process_argument' function process and validates all arguments
 */
@@ -103,18 +116,10 @@ int	process_arguments(int argc, char **argv, t_list **list)
 {
 	if (split_arguments(argc, argv, list) != 0)
 		return (1);
-	/*if (check_duplicated_range(*list) != 0)
+	if (check_duplicated_range(*list) != 0)
 	{
-		ft_lstclear(list, free);
+		//ft_lstclear(list, free);
 		return (1);
-	}*/
+	}
 	return (0);
 }
-/*
-int main (int argc, char **argv)
-{
-	t_list *list = NULL;
-	if (process_arguments(argc, argv, &list) != 0)
-		printf("Error\n");
-}
-*/

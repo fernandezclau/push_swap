@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:02:52 by claferna          #+#    #+#             */
-/*   Updated: 2024/05/05 19:29:56 by claferna         ###   ########.fr       */
+/*   Updated: 2024/05/06 17:07:30 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ int	ft_lstmin(t_list **list)
 
 	if (*list == NULL)
 		return (-1);
-	min = *(int *)(*list)->content;
+	min = (*list)->content;
 	cur = (*list)->next;
 	while (cur != NULL)
 	{
-		if (*(int *)cur->content < min)
-			min = *(int *)cur->content;
+		if (cur->content < min)
+			min = cur->content;
 		cur = cur->next;
 	}
 	return (min);
@@ -43,12 +43,12 @@ int	ft_lstmax(t_list **list)
 
 	if (*list == NULL)
 		return (-1);
-	max = *(int *)(*list)->content;
+	max = (*list)->content;
 	cur = (*list)->next;
 	while (cur != NULL)
 	{
-		if (*(int *)cur->content > max)
-			max = *(int *)cur->content;
+		if (cur->content > max)
+			max = cur->content;
 		cur = cur->next;
 	}
 	return (max);
@@ -69,7 +69,7 @@ int	ft_lstindex(t_list **list, int value)
 	cur = (*list);
 	while (cur != NULL)
 	{
-		if (*(int *)cur->content == value)
+		if (cur->content == value)
 			return (index);
 		cur = cur->next;
 		index++;
@@ -91,7 +91,7 @@ t_list	*ft_lstvalue(t_list **list, int index)
 	while (cur != NULL)
 	{
 		if (i == index)
-			return (*(int *)cur->content);
+			return (cur);
 		cur = cur->next;
 		i++;
 	}
