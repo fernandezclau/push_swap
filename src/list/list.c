@@ -81,7 +81,7 @@ int	ft_lstindex(t_list **list, int value)
 ** DESC: The 'ft_lst_value' function gets the value of an element of a
 ** list given its index.
 */
-int	ft_lstvalue(t_list **list, int index)
+t_list	*ft_lstvalue(t_list **list, int index)
 {
 	int		i;
 	t_list	*cur;
@@ -95,7 +95,7 @@ int	ft_lstvalue(t_list **list, int index)
 		cur = cur->next;
 		i++;
 	}
-	return (-1);
+	return (cur);
 }
 
 /*

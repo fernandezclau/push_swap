@@ -5,22 +5,30 @@
 int main(int argc, char **argv)
 {
 	t_list	*stack_a;
+//	t_list	*stack_b;
 	
 	stack_a = NULL;
+//	stack_b = NULL;
 	if (argc <= 1)
 		return (0);
-/*	if (process_arguments(argc, argv, &stack_a) != 0)
+	if (process_arguments(argc, argv, &stack_a) != 0)
 		(ft_printf("Error\n"), exit(-1));
 	if (is_sorted(&stack_a))
 	{
 		ft_lstclear(&stack_a, free);
 		return (0);
-	}	
+	}
+	/*if (argc <= 6)
+		//tinysort();
+	else
+	{
+		sort(&stack_a, &stack_b);
+		ft_lstclear(&stack_a);
+	}	*/
 	while (stack_a != NULL)
 	{
-		printf("%d", *(int *) stack_a->content);
+		printf("%d", stack_a->content);
 		stack_a = stack_a->next;
-	}*/
-	system("leaks a.out");
-	getchar();
+	}	
+//	ft_lstclear(&stack_a, free);
 }

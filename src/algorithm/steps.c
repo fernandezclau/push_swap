@@ -46,19 +46,19 @@ int	get_nearby_num(t_list **a, t_list **b, int lst_i)
 	int		value;
 
 	cur_b = *b;
-	if (*(int *)(*a)->content < ft_lstmin(b) || *(int *)(*a)->content > ft_lstmax(b))
+	if ((*a)->content < ft_lstmin(b) || (*a)->content > ft_lstmax(b))
 		return (ft_lstmax(b));
 	else
 	{
-		value = ft_lstvalue(b, (lst_i - 1));
+		value = ft_lstvalue(b, (lst_i - 1))->value;
 		while (cur_b->next != NULL)
 		{
-			if (*(int *)(*a)->content < *(int *)cur_b->content \
-					&& *(int *)(*a)->content > *(int *)cur_b->next->content)
-				target = *(int *)cur_b->next->content;
-			else if (*(int *)(*a)->content < value && *(int *)(*a)->content > \
-						*(int *)(*b)->content)
-				target = *(int *)(*b)->content;
+			if ((*a)->content < cur_b->content \
+					&& (*a)->content > cur_b->next->content)
+				target = cur_b->next->content;
+			else if ((*a)->content < cur_b->next->content
+				       	&& (*a)->content > (*b)->content)
+				target = (*b)->content;
 			cur_b = cur_b->next;
 		}
 	}
@@ -85,6 +85,54 @@ void	steps_to_b(t_list **a, t_list **b)
 		*a = (*a)->next;
 	}
 }
+/*
+** DESC: The 'least_steps' function chooses the element with the least amount
+** of steps.
+*/
+int	least_steps(t_stack **a)
+{
+	int	j;
+	int	index;
+	int	value;
+	int	min;
+
+	j = 0;
+	min = INT_MAX;
+	value == ft_lstindex(&a, index)->total_s;
+	while (j < ft_lstsize(&a))
+	{	
+		value = ft_lstindex(&a, index)->total_s;
+		if (value < min)
+		{
+			min = value;
+			index = j;
+		}
+		j++;
+	}	
+	return (index);
+}
+
+/*
+** DESC: The 'total_steps' function counts the total steps of a element.
+*/
+void	total_steps(t_list **a)
+{
+	while (a != NULL)
+	{
+		if ((a->steps_a * a->steps_b) < 0)
+			a->total = abs(a->steps_a) + abs(a->steps_b);
+		else
+		{
+			if (abs(a->steps_a > abs(a->steps_b))
+				a->total = abs(a->steps_b);
+			else
+				a->total = abs(a->steps_b);
+		}
+		a = a->next;
+	}
+}
+
+
 #include <stdio.h>
 int main() {
     // Crear algunos nodos de lista

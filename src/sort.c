@@ -1,7 +1,7 @@
 
 #include "../include/push_swap.h"
 #include <stdio.h>
-
+/*
 void insertionSort(t_list *head, t_list **so)
 {
 	t_list	*cur;
@@ -30,7 +30,7 @@ void insertionSort(t_list *head, t_list **so)
 		cur = next;
 	}
 }
-
+*/
 /*
 ** DESC: The 'is_sorted' function check if a list is sorted
 */
@@ -39,7 +39,7 @@ int	is_sorted(t_list **list)
 	
 	while (*list && (*list)->next)
 	{
-		if (*(int *)(*list)->content > *(int *)(*list)->next->content)
+		if ((*list)->content > (*list)->next->content)
 			return (0);
 		(*list) = (*list)->next;
 	}

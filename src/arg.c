@@ -12,13 +12,13 @@ int check_duplicated_range(t_list *list)
 	
 	while (list)
 	{
-		num = *(int *)list->content;
+		num = list->content;
 		if (num < INT_MIN || num > INT_MAX)
 			return 1;
         	temp = list->next;
 		while (temp)
 		{
-			if (*(int *)temp->content == num)
+			if (temp->content == num)
                 		return 1;
             		temp = temp->next;
 		}
@@ -52,20 +52,13 @@ int	check_ints(char *arg)
 */
 int	atoi_argument(char *argument, t_list **list)
 {
-	int	*num_ptr;
+	int	num_ptr;
 	t_list	*num;
+
 	if (check_ints(argument) == 0)
 	{
-		num_ptr = malloc(sizeof(int));
-		if (!num_ptr)
-			return (1);
-		*num_ptr = ft_atoi(argument);
+		num_ptr = ft_atoi(argument);
 		num = ft_lstnew(num_ptr);
-		if (!num)
-		{
-			free(num_ptr);
-			return (1);
-		}
 		ft_lstadd_back(list, num);
 	}
 	else
@@ -110,11 +103,11 @@ int	process_arguments(int argc, char **argv, t_list **list)
 {
 	if (split_arguments(argc, argv, list) != 0)
 		return (1);
-	if (check_duplicated_range(*list) != 0)
+	/*if (check_duplicated_range(*list) != 0)
 	{
 		ft_lstclear(list, free);
 		return (1);
-	}
+	}*/
 	return (0);
 }
 /*
