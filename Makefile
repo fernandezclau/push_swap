@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: claferna <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/05/06 18:04:23 by claferna          #+#    #+#              #
+#    Updated: 2024/05/06 18:58:46 by claferna         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 # --------------------------------
 # -------- MAIN VARIABLE  --------
 # --------------------------------
@@ -36,7 +48,14 @@ OBJDIR		=	obj
 # ---------- SRC & OBJS -----------
 # ---------------------------------
 
-SRC		=	src/main.c src/arg.c src/sort.c src/utils.c
+SRC			=	src/main.c\
+				src/arg.c\
+				src/list/list.c\
+				src/utils.c\
+				src/moves/push.c src/moves/rotate.c src/moves/swap.c src/moves/r_rotate.c\
+				src/algorithm/big_sort.c src/algorithm/steps.c src/algorithm/tiny_sort.c\
+				src/sort.c	
+				
 
 OBJS		=	$(SRC:.c=.o)
 

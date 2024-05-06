@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 18:27:47 by claferna          #+#    #+#             */
-/*   Updated: 2024/05/04 20:44:34 by claferna         ###   ########.fr       */
+/*   Updated: 2024/05/06 18:57:51 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	sa(t_list **stack_a, int print)
 	second->next = first;
 	*stack_a = second;
 	if (print == 1)
-		printf("sa\n");
+		ft_printf("sa\n");
 }
 
 /* 
@@ -47,7 +47,7 @@ void	sb(t_list **stack_b, int print)
 	second->next = first;
 	*stack_b = second;
 	if (print == 1)
-		printf("sb\n");
+		ft_printf("sb\n");
 }
 
 /*
@@ -57,5 +57,5 @@ void	ss(t_list **stack_a, t_list **stack_b)
 {
 	sa(stack_a, 0);
 	sb(stack_b, 0);
-	printf("ss\n");
+	ft_printf("ss\n");
 }

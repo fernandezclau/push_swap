@@ -6,11 +6,13 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 17:53:05 by claferna          #+#    #+#             */
-/*   Updated: 2024/05/05 19:31:22 by claferna         ###   ########.fr       */
+/*   Updated: 2024/05/06 18:02:28 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
+#include <stdio.h>
+#include <math.h>
 
 /*
 ** DESC: The 'steps_to_a' funtion counts the nº of steps needed
@@ -22,6 +24,7 @@ void	steps_to_a(t_list **stack_a)
 	int		lst_size;
 	t_list	*cur;
 
+	len = 0;
 	lst_size = ft_lstsize(*stack_a);
 	cur = *stack_a;
 	while (cur != NULL)
@@ -36,7 +39,7 @@ void	steps_to_a(t_list **stack_a)
 }
 
 /*
-** DESC: The 'get_nearby_num' function gets the highest closest number from
+** DESC: The 'get_nearby_num' function gets the lowest closest number from
 ** 'stack_b' given a number of 'stack_a'.
 */
 int	get_nearby_num(t_list **a, t_list **b, int lst_i)
@@ -50,46 +53,50 @@ int	get_nearby_num(t_list **a, t_list **b, int lst_i)
 		return (ft_lstmax(b));
 	else
 	{
-		value = ft_lstvalue(b, (lst_i - 1))->value;
+		value = ft_lstvalue(b, (lst_i - 1))->content;
 		while (cur_b->next != NULL)
 		{
 			if ((*a)->content < cur_b->content \
 					&& (*a)->content > cur_b->next->content)
 				target = cur_b->next->content;
-			else if ((*a)->content < cur_b->next->content
-				       	&& (*a)->content > (*b)->content)
+			else if ((*a)->content < cur_b->next->content \
+						&& (*a)->content > (*b)->content)
 				target = (*b)->content;
 			cur_b = cur_b->next;
 		}
 	}
 	return (target);
 }
- 
+
 /*
 ** DESC: The 'steps_to_b' function counts the nº of steps needed
 ** to move each element of 'stack_b' to 'stack_a'.
 */
 void	steps_to_b(t_list **a, t_list **b)
 {
-	int	target;
-	int	lst_size;
+	int		target;
+	int		lst_size;
+	t_list	*aux;
 
+	target = 0;
 	lst_size = ft_lstsize(*b);
-	while (*a != NULL)
+	aux = *a;
+	while (aux != NULL)
 	{
-		target = get_nearby_num(a, b, lst_size);
+		target = get_nearby_num(&aux, b, lst_size);
 		if (ft_lstindex(b, target) <= lst_size / 2)
-			(*a)->steps_b = ft_lstindex(b, target);
+			aux->steps_b = ft_lstindex(b, target);
 		else
-			(*a)->steps_b = -(lst_size - ft_lstindex(b, target));
-		*a = (*a)->next;
+			aux->steps_b = -(lst_size - ft_lstindex(b, target));
+		aux = aux->next;
 	}
 }
+
 /*
-** DESC: The 'least_steps' function chooses the element with the least amount
-** of steps.
+** DESC: The 'least_steps' function chooses the element of the stack_a
+** with the least amount of steps.
 */
-int	least_steps(t_stack **a)
+int	least_steps(t_list **a)
 {
 	int	j;
 	int	index;
@@ -98,71 +105,82 @@ int	least_steps(t_stack **a)
 
 	j = 0;
 	min = INT_MAX;
-	value == ft_lstindex(&a, index)->total_s;
-	while (j < ft_lstsize(&a))
+	while (j < ft_lstsize(*a))
 	{	
-		value = ft_lstindex(&a, index)->total_s;
+		value = ft_lstvalue(a, j)->total_s;
 		if (value < min)
 		{
 			min = value;
 			index = j;
 		}
 		j++;
-	}	
+	}
 	return (index);
 }
 
 /*
-** DESC: The 'total_steps' function counts the total steps of a element.
+** DESC: The 'total_steps' function counts the total steps of a element
+** with absolute values.
 */
 void	total_steps(t_list **a)
 {
-	while (a != NULL)
+	t_list	*aux;
+
+	aux = *a;
+	while (aux != NULL)
 	{
-		if ((a->steps_a * a->steps_b) < 0)
-			a->total = abs(a->steps_a) + abs(a->steps_b);
+		if ((aux->steps_a * aux->steps_b) < 0)
+			aux->total_s = (abs(aux->steps_a) + abs(aux->steps_b));
 		else
 		{
-			if (abs(a->steps_a > abs(a->steps_b))
-				a->total = abs(a->steps_b);
+			if (abs(aux->steps_a) > abs(aux->steps_b))
+				aux->total_s = abs(aux->steps_a);
 			else
-				a->total = abs(a->steps_b);
+				aux->total_s = abs(aux->steps_b);
 		}
-		a = a->next;
+		aux = aux->next;
 	}
 }
-
-
-#include <stdio.h>
+/*
 int main() {
-    // Crear algunos nodos de lista
-    t_list *node1 = malloc(sizeof(t_list));
+    // Crear y llenar la lista 'stack_b'
+    t_list *stack_a = malloc(sizeof(t_list));
     t_list *node2 = malloc(sizeof(t_list));
     t_list *node3 = malloc(sizeof(t_list));
-    t_list *node4 = malloc(sizeof(t_list));
-
-    int num1 = 5, num2 = 2, num3 = 7, num4 = -10;
-
-    node1->content = &num1;
-    node1->next = node2;
-    node2->content = &num2;
+    stack_a->content = 5;
+    node2->content = 10;
+    node3->content = 15;
+    stack_a->next = node2;
     node2->next = node3;
-    node3->content = &num3;
-    node3->next = node4;
-    node4->content = &num4;
-	
-	int num_a = 6;
-	t_list *node_a = malloc(sizeof(t_list));
-	node_a->content = &num_a;
-	node_a->next = NULL;
+    node3->next = NULL;
 
-    t_list *head = node1;
-	t_list *a = node_a;
-	
-    printf("%d", get_nearby_num(&a, &head, 4));
-	free(node1);
+    // Crear y llenar la lista 'stack_a'
+    t_list *node1 = malloc(sizeof(t_list));
+    node1->content = 7;
+    node1->next = malloc(sizeof(t_list));
+    node1->next->content = 12;
+    node1->next->next = NULL;
+
+    steps_to_a(&stack_a);
+    steps_to_b(&stack_a, &node1);
+	int min = least_steps(&stack_a);
+	printf("Posición de pasos mínimos: %d", min);
+	total_steps(&stack_a);
+
+    // Imprimir los resultados
+    printf("Pasos hacia b:\n");
+    while (stack_a != NULL) {
+		printf("Content: %d, Steps_a: %d\n", stack_a->content, stack_a->steps_a);
+        printf("Content: %d, Steps_b: %d\n", stack_a->content, stack_a->steps_b);
+		printf("Contetn: %d, Total: %d\n", stack_a->content, stack_a->total_s);
+		stack_a = stack_a->next;
+    }
+
+    // Liberar la memoria asignada
+    free(node1);
     free(node2);
     free(node3);
+    free(stack_a);
 
     return 0;
-}
+}*/
