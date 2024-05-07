@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 20:53:08 by claferna          #+#    #+#             */
-/*   Updated: 2024/05/07 17:48:27 by claferna         ###   ########.fr       */
+/*   Updated: 2024/05/07 20:15:42 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PUSH_SWAP_H
 
 # include <limits.h>
+# include <stdio.h>
 # include <unistd.h>
 # include "../lib/libft/libft.h"
 # include "../lib/printf/ft_printf.h"
@@ -28,7 +29,6 @@ int		process_arguments(int argc, char **argv, t_list **list);
 void	free_split(char **split);
 void	print_stack(t_list **stack);
 int		is_sorted(t_list **list);
-
 // -------------- MOVES ------------------------
 void	pa(t_list **stack_a, t_list **stack_b);
 void	pb(t_list **stack_b, t_list **stack_a);

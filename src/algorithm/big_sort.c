@@ -6,12 +6,11 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 18:38:15 by claferna          #+#    #+#             */
-/*   Updated: 2024/05/07 19:58:29 by claferna         ###   ########.fr       */
+/*   Updated: 2024/05/07 20:12:50 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
-#include <stdio.h>
 
 /*
 ** The 'move_stack' function
@@ -79,10 +78,10 @@ void	order_stacks(t_list **stack_a, t_list **stack_b)
 {
 	while ((*stack_b)->content != ft_lstmax(stack_b))
 	{
-		if (ft_lstmax_i(stack_b) <= (ft_lstsize(*stack_b) / 2))
-			rb(stack_b, 0);
+		if (ft_lstmax(stack_b) <= (ft_lstsize(*stack_b) / 2))
+			rb(stack_a, 0);
 		else
-			rrb(stack_b, 1);
+			rrb(stack_a, 1);
 	}
 	tiny_sort(stack_a);
 }
@@ -96,11 +95,11 @@ void	merge(t_list **stack_a, t_list **stack_b)
 	t_list	*aux_a;
 	int		size;
 	int		i;
-
-	i = 2;
+	
+	i = 3;
 	size = ft_lstsize(*stack_a);
 	aux_a = ft_lstvalue(stack_a, size - (i--));
-	while (ft_lstsize(aux_a) >= 0)
+	while (ft_lstsize(*stack_a))
 	{
 		if (ft_lstmax(&aux_a) < ft_lstmax(stack_b))
 			pa(stack_a, stack_b);
