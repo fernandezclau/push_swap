@@ -23,8 +23,6 @@ int main(int argc, char **argv)
 		tiny_sort(&stack_a);
 	else
 	{	
-		printf("stack abb ");
-		print_stack(&stack_b);
 		big_sort(&stack_a, &stack_b);
 		ft_lstclear(&stack_a);
 	}

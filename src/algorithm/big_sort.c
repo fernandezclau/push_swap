@@ -23,7 +23,7 @@ void	move_stack(t_list **stack_a, t_list **stack_b, int index)
 	while (abs(ft_lstvalue(stack_a, index)->steps_a) > i)
 	{
 		if (ft_lstvalue(stack_a, index)->steps_a > 0)
-			ra(stack_a, 0);
+			ra(stack_a, 1);
 		else
 			rra(stack_a, 1);
 		index = least_steps(stack_a);
@@ -33,7 +33,7 @@ void	move_stack(t_list **stack_a, t_list **stack_b, int index)
 	while (abs(ft_lstvalue(stack_a, index)->steps_b) > i)
 	{
 		if (ft_lstvalue(stack_a, index)->steps_b > 0)
-			rb(stack_b, 0);
+			rb(stack_b, 1);
 		else
 			rrb(stack_b, 1);
 		i++;
@@ -78,10 +78,10 @@ void	order_stacks(t_list **stack_a, t_list **stack_b)
 {
 	while ((*stack_b)->content != ft_lstmax(stack_b))
 	{
-		if (ft_lstmax(stack_b) <= (ft_lstsize(*stack_b) / 2))
-			rb(stack_a, 0);
+		if (ft_lstmax_i(stack_b) <= (ft_lstsize(*stack_b) / 2))
+			rb(stack_b, 1);
 		else
-			rrb(stack_a, 1);
+			rrb(stack_b, 1);
 	}
 	tiny_sort(stack_a);
 }
@@ -93,23 +93,22 @@ void	order_stacks(t_list **stack_a, t_list **stack_b)
 void	merge(t_list **stack_a, t_list **stack_b)
 {
 	t_list	*aux_a;
-	int		size;
 	int		i;
 	
 	i = 3;
-	size = ft_lstsize(*stack_a);
-	aux_a = ft_lstvalue(stack_a, size - (i--));
-	while (ft_lstsize(*stack_a))
+	aux_a = ft_lstvalue(stack_a, ft_lstsize(*stack_a) - (i--));
+	while (ft_lstsize(aux_a))
 	{
 		if (ft_lstmax(&aux_a) < ft_lstmax(stack_b))
 			pa(stack_a, stack_b);
 		else
 		{
-			rra(stack_a, 0);
-			aux_a = ft_lstvalue(stack_a, size - (i--));
+			rra(stack_a, 1);
+			aux_a = ft_lstvalue(stack_a, ft_lstsize(*stack_a) - (i--));
 		}
+		
 	}
-	while (ft_lstsize(*stack_b) >= 0)
+	while (ft_lstsize(*stack_b) > 0)
 		pa(stack_a, stack_b);
 }
 
@@ -131,14 +130,8 @@ void	big_sort(t_list **stack_a, t_list **stack_b)
 		index = least_steps(stack_a);
 		exec_steps(stack_a, stack_b, index);
 		pb(stack_b, stack_a);
-		print_stack(stack_a);
-		printf("Stack b \n");
-		print_stack(stack_b);
 	}
 	order_stacks(stack_a, stack_b);
 	merge(stack_a, stack_b);
-	printf("FIN\n");
-	print_stack(stack_a);
-	printf("\n");
-	print_stack(stack_b);
+//	print_stack(stack_a);
 }
