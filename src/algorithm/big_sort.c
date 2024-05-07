@@ -6,11 +6,12 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 18:38:15 by claferna          #+#    #+#             */
-/*   Updated: 2024/05/06 19:10:00 by claferna         ###   ########.fr       */
+/*   Updated: 2024/05/07 19:58:29 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
+#include <stdio.h>
 
 /*
 ** The 'move_stack' function
@@ -78,10 +79,10 @@ void	order_stacks(t_list **stack_a, t_list **stack_b)
 {
 	while ((*stack_b)->content != ft_lstmax(stack_b))
 	{
-		if (ft_lstmax(stack_b) <= (ft_lstsize(*stack_b) / 2))
-			rb(stack_a, 0);
+		if (ft_lstmax_i(stack_b) <= (ft_lstsize(*stack_b) / 2))
+			rb(stack_b, 0);
 		else
-			rrb(stack_a, 1);
+			rrb(stack_b, 1);
 	}
 	tiny_sort(stack_a);
 }
@@ -95,11 +96,11 @@ void	merge(t_list **stack_a, t_list **stack_b)
 	t_list	*aux_a;
 	int		size;
 	int		i;
-	
-	i = 3;
+
+	i = 2;
 	size = ft_lstsize(*stack_a);
 	aux_a = ft_lstvalue(stack_a, size - (i--));
-	while (ft_lstsize(*stack_a))
+	while (ft_lstsize(aux_a) >= 0)
 	{
 		if (ft_lstmax(&aux_a) < ft_lstmax(stack_b))
 			pa(stack_a, stack_b);
@@ -109,10 +110,10 @@ void	merge(t_list **stack_a, t_list **stack_b)
 			aux_a = ft_lstvalue(stack_a, size - (i--));
 		}
 	}
-	while (ft_lstsize(*stack_b))
+	while (ft_lstsize(*stack_b) >= 0)
 		pa(stack_a, stack_b);
 }
-#include <stdio.h>
+
 /*
 ** The 'big_sort' function is the main function to sort a stack of more
 ** than 6 numbers with two stacks.
@@ -120,36 +121,25 @@ void	merge(t_list **stack_a, t_list **stack_b)
 void	big_sort(t_list **stack_a, t_list **stack_b)
 {
 	int	index;
-	
+
 	pb(stack_b, stack_a);
 	pb(stack_b, stack_a);
-	while (ft_lstsize(*stack_b) > 3)
+	while (ft_lstsize(*stack_a) > 3)
 	{
 		steps_to_a(stack_a);
 		steps_to_b(stack_a, stack_b);
 		total_steps(stack_a);
 		index = least_steps(stack_a);
-		while (*stack_a != NULL)
-		{
-			printf("Content: %d, Steps_a: %d\n", (*stack_a)->content, (*stack_a)->steps_a);
-			printf("Content: %d, Steps_b: %d\n", (*stack_a)->content, (*stack_a)->steps_b);
-			printf("Contetn: %d, Total: %d\n", (*stack_a)->content, (*stack_a)->total_s);
-			(*stack_a) = (*stack_a)->next;
-		}
-		//exec_steps(&stack_a, &stack_b, index);
-		//pb(&stack_a, &stack_b);		
+		exec_steps(stack_a, stack_b, index);
+		pb(stack_b, stack_a);
+		print_stack(stack_a);
+		printf("Stack b \n");
+		print_stack(stack_b);
 	}
-	while (stack_a != NULL)
-	{
-		printf(" Valor %d \n", stack_a->content);
-		stack_a = stack_a->next;
-	}
-	while (stack_a != NULL)
-	{
-		printf(" Valor %d \n", stack_a->content);
-		stack_a = stack_a->next;
-	}
-
-	//order_stacks(&stack_a, &stack_b);
-	//merge(&stack_a, &stack_b);
+	order_stacks(stack_a, stack_b);
+	merge(stack_a, stack_b);
+	printf("FIN\n");
+	print_stack(stack_a);
+	printf("\n");
+	print_stack(stack_b);
 }

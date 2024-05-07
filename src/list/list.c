@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:02:52 by claferna          #+#    #+#             */
-/*   Updated: 2024/05/06 17:07:30 by claferna         ###   ########.fr       */
+/*   Updated: 2024/05/07 20:00:48 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,34 @@ t_list	*ft_lstvalue(t_list **list, int index)
 		i++;
 	}
 	return (cur);
+}
+
+/*
+** DESC: The 'ft_lstmax_i' function return the index of the maximim value 
+** of a list.
+*/
+int	ft_lstmax_i(t_list **stack)
+{
+	t_list	*aux;
+	int		max;
+	int		max_index;
+	int		current_index;
+
+	max = INT_MIN;
+	max_index = -1;
+	current_index = 0;
+	aux = *stack;
+	while (aux != NULL)
+	{
+		if (aux->content > max)
+		{
+			max = aux->content;
+			max_index = current_index;
+		}
+		aux = aux->next;
+		current_index++;
+	}
+	return (max_index);
 }
 
 /*

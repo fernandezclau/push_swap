@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 16:41:05 by claferna          #+#    #+#             */
-/*   Updated: 2024/05/06 16:46:24 by claferna         ###   ########.fr       */
+/*   Updated: 2024/05/07 19:59:00 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,6 @@ int	process_arguments(int argc, char **argv, t_list **list)
 		return (1);
 	if (check_duplicated_range(*list) != 0)
 	{
-		//ft_lstclear(list, free);
 		return (1);
 	}
 	return (0);

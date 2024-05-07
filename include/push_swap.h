@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 20:53:08 by claferna          #+#    #+#             */
-/*   Updated: 2024/05/06 18:59:57 by claferna         ###   ########.fr       */
+/*   Updated: 2024/05/07 17:48:27 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ int		check_duplicated_range(t_list *list);
 int		process_arguments(int argc, char **argv, t_list **list);
 // ------------------- UTILS -------------------
 void	free_split(char **split);
-// ---------- SORTINIG ------------------------- 
+void	print_stack(t_list **stack);
 int		is_sorted(t_list **list);
+
 // -------------- MOVES ------------------------
 void	pa(t_list **stack_a, t_list **stack_b);
 void	pb(t_list **stack_b, t_list **stack_a);
@@ -45,6 +46,7 @@ int		ft_lstmin(t_list **list);
 int		ft_lstmax(t_list **list);
 int		ft_lstindex(t_list **list, int value);
 t_list	*ft_lstvalue(t_list **list, int index);
+int		ft_lstmax_i(t_list **stack);
 // -------------- ALGORITHM -------------------
 // ................ steps .....................
 void	steps_to_a(t_list **stack_a);
