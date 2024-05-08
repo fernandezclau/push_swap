@@ -6,7 +6,7 @@
 #    By: claferna <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/06 18:04:23 by claferna          #+#    #+#              #
-#    Updated: 2024/05/07 20:16:47 by claferna         ###   ########.fr        #
+#    Updated: 2024/05/08 17:51:01 by claferna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ SRC			=	src/main.c\
 				src/list/list.c\
 				src/utils.c\
 				src/moves/push.c src/moves/rotate.c src/moves/swap.c src/moves/r_rotate.c\
-				src/algorithm/big_sort.c src/algorithm/steps.c src/algorithm/tiny_sort.c	
+				src/algorithm/big_sort.c src/algorithm/steps.c src/algorithm/short_sort.c	
 
 OBJS		=	$(SRC:.c=.o)
 
@@ -71,12 +71,12 @@ $(NAME)		:	$(OBJS)
 
 clean		:	
 				$(RM) $(OBJS) 
-				$(RM) push_swap
 				make -C $(LIBFT) clean
 				make -C $(PRT) clean
 
 fclean		:	clean
 				$(RM) $(NAME)
+				$(RM) push_swap
 				make -C $(LIBFT) fclean
 				make -C $(PRT) fclean
 

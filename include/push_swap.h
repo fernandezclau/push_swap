@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 20:53:08 by claferna          #+#    #+#             */
-/*   Updated: 2024/05/07 20:15:42 by claferna         ###   ########.fr       */
+/*   Updated: 2024/05/08 17:36:36 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,10 @@ void	steps_to_b(t_list **stack_b, t_list **stack_a);
 int		get_nearby_num(t_list **a, t_list **b, int index);
 int		least_steps(t_list **a);
 void	total_steps(t_list **a);
+//................. sorting ...................
 void	big_sort(t_list **stack_a, t_list **stack_b);
+void	short_sort(t_list **stack_a);
 void	tiny_sort(t_list **stack);
+void	merge(t_list **stack_a, t_list **stack_b);
+void	order_stacks(t_list **stack_a, t_list **stack_b);
 #endif

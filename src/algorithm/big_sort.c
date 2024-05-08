@@ -6,16 +6,17 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 18:38:15 by claferna          #+#    #+#             */
-/*   Updated: 2024/05/07 20:12:50 by claferna         ###   ########.fr       */
+/*   Updated: 2024/05/08 17:36:48 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
 /*
-** The 'move_stack' function
+** The 'move_stack' function that executes the instruccions only in one of
+** the two stacks.
 */
-void	move_stack(t_list **stack_a, t_list **stack_b, int index)
+static void	move_stack(t_list **stack_a, t_list **stack_b, int index)
 {
 	int		i;
 
@@ -41,9 +42,10 @@ void	move_stack(t_list **stack_a, t_list **stack_b, int index)
 }
 
 /*
-** DESC: The 'exec_steps' function
+** DESC: The 'exec_steps' function executes the instructions needed before
+** pushing a number to b.
 */
-void	exec_steps(t_list **stack_a, t_list **stack_b, int index)
+static void	exec_steps(t_list **stack_a, t_list **stack_b, int index)
 {
 	t_list	*aux;
 
@@ -72,7 +74,8 @@ void	exec_steps(t_list **stack_a, t_list **stack_b, int index)
 }
 
 /*
-** DESC: The 'order_stacks' function
+** DESC: The 'order_stacks' function orders the stack a and prepares the stack b 
+** for merging.
 */
 void	order_stacks(t_list **stack_a, t_list **stack_b)
 {
@@ -94,19 +97,19 @@ void	merge(t_list **stack_a, t_list **stack_b)
 {
 	t_list	*aux_a;
 	int		i;
-	
+
 	i = 3;
 	aux_a = ft_lstvalue(stack_a, ft_lstsize(*stack_a) - (i--));
 	while (ft_lstsize(aux_a))
 	{
-		if (ft_lstmax(&aux_a) < ft_lstmax(stack_b))
+		if (ft_lstsize(*stack_b) > 0 && \
+				(ft_lstmax(&aux_a) < ft_lstmax(stack_b)))
 			pa(stack_a, stack_b);
 		else
 		{
 			rra(stack_a, 1);
 			aux_a = ft_lstvalue(stack_a, ft_lstsize(*stack_a) - (i--));
-		}
-		
+		}	
 	}
 	while (ft_lstsize(*stack_b) > 0)
 		pa(stack_a, stack_b);
@@ -133,5 +136,4 @@ void	big_sort(t_list **stack_a, t_list **stack_b)
 	}
 	order_stacks(stack_a, stack_b);
 	merge(stack_a, stack_b);
-//	print_stack(stack_a);
 }
