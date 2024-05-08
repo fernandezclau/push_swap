@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 20:53:08 by claferna          #+#    #+#             */
-/*   Updated: 2024/05/08 17:36:36 by claferna         ###   ########.fr       */
+/*   Updated: 2024/05/08 18:22:10 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int		process_arguments(int argc, char **argv, t_list **list);
 void	free_split(char **split);
 void	print_stack(t_list **stack);
 int		is_sorted(t_list **list);
+void	free_lst(t_list **stack);
 // -------------- MOVES ------------------------
 void	pa(t_list **stack_a, t_list **stack_b);
 void	pb(t_list **stack_b, t_list **stack_a);
