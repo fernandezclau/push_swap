@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 16:50:07 by claferna          #+#    #+#             */
-/*   Updated: 2024/05/07 16:56:31 by claferna         ###   ########.fr       */
+/*   Updated: 2024/05/08 18:56:31 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	print_stack(t_list **stack)
 }
 
 /*
-** DESC: The 'free_split' function free the memory of a **char
+** DESC: The 'free_split' function frees the memory of a **char
 */
 void	free_split(char **split)
 {
@@ -57,4 +57,21 @@ void	free_split(char **split)
 	while (split[i])
 		free(split[i++]);
 	free(split);
+}
+
+/*
+** DESC: The 'free_list' function frees the memory of a t_list struct.
+*/
+void	free_lst(t_list **stack)
+{
+	t_list	*next;
+
+	next = NULL;
+	while (*stack != NULL)
+	{
+		next = (*stack)->next;
+		free(*stack);
+		*stack = next;
+	}
+	free(*stack);
 }

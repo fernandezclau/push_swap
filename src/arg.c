@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 16:41:05 by claferna          #+#    #+#             */
-/*   Updated: 2024/05/07 20:13:47 by claferna         ###   ########.fr       */
+/*   Updated: 2024/05/08 19:26:27 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,23 @@ int	check_ints(char *arg)
 int	atoi_argument(char *argument, t_list **list)
 {
 	int		num_ptr;
+	t_list	*node;
 	t_list	*num;
 
 	if (check_ints(argument) == 0)
 	{
-		num_ptr = ft_atoi(argument);
-		num = ft_lstnew(num_ptr);
-		ft_lstadd_back(list, num);
+		if (ft_atoi(argument, &num_ptr) == 1 && list != NULL \
+				&& *list != NULL)
+		{
+			free_lst(list);
+			return (1);
+		}
+		node = malloc(sizeof(t_list));
+		if (!node)
+			return (0);
+		node->content = num_ptr;
+		node->next = NULL;
+		ft_lstadd_back(list, node);
 	}
 	else
 		return (1);

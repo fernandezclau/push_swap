@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:12:15 by claferna          #+#    #+#             */
-/*   Updated: 2024/05/08 17:34:41 by claferna         ###   ########.fr       */
+/*   Updated: 2024/05/08 19:01:05 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,11 @@ int	main(int argc, char **argv)
 	if (process_arguments(argc, argv, &stack_a) != 0)
 		(ft_printf("Error\n"), exit(-1));
 	if (is_sorted(&stack_a))
-		return (0);
+		(free_lst(&stack_a), exit(-1));
 	if (ft_lstsize(stack_a) < 6)
 		short_sort(&stack_a);
 	else
-	{	
 		big_sort(&stack_a, &stack_b);
-		ft_lstclear(&stack_a);
-	}
+	free_lst(&stack_a);
+	return (0);
 }
