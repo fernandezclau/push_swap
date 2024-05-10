@@ -6,13 +6,11 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 17:53:05 by claferna          #+#    #+#             */
-/*   Updated: 2024/05/06 18:02:28 by claferna         ###   ########.fr       */
+/*   Updated: 2024/05/10 21:06:11 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
-#include <stdio.h>
-#include <math.h>
 
 /*
 ** DESC: The 'steps_to_a' funtion counts the nº of steps needed

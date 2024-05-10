@@ -6,12 +6,11 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 17:12:15 by claferna          #+#    #+#             */
-/*   Updated: 2024/05/08 19:01:05 by claferna         ###   ########.fr       */
+/*   Updated: 2024/05/10 21:04:07 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
-#include <stdio.h>
 
 int	main(int argc, char **argv)
 {

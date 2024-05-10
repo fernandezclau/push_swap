@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 20:53:08 by claferna          #+#    #+#             */
-/*   Updated: 2024/05/08 18:22:10 by claferna         ###   ########.fr       */
+/*   Updated: 2024/05/10 21:00:16 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <limits.h>
 # include <stdio.h>
 # include <unistd.h>
-# include "../lib/libft/libft.h"
+# include "../lib/utils/libft.h"
 # include "../lib/printf/ft_printf.h"
 
 // ------------- PROCESS ARGUMENTS -------------

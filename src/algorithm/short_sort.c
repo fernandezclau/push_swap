@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 18:13:27 by claferna          #+#    #+#             */
-/*   Updated: 2024/05/08 17:51:50 by claferna         ###   ########.fr       */
+/*   Updated: 2024/05/10 21:05:11 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	short_sort(t_list **stack_a)
 	if (ft_lstsize(*stack_a) == 3)
 	{
 		tiny_sort(stack_a);
-		print_stack(stack_a);
 		return ;
 	}
 	while (ft_lstsize(*stack_a) > 3)

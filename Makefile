@@ -6,7 +6,7 @@
 #    By: claferna <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/06 18:04:23 by claferna          #+#    #+#              #
-#    Updated: 2024/05/08 17:51:01 by claferna         ###   ########.fr        #
+#    Updated: 2024/05/10 21:00:40 by claferna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ AR		=	ar -rc
 #
 # ............ LIBFT ..............
 
-LIBFT		=	./lib/libft
+LIBFT		=	./lib/utils
 LIBFT_A		=	$(LIBFT)/libft.a
 
 # ........... PRINTF .............
